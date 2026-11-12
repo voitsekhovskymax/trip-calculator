@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Тиждень на острові Ванкувер — Артем Шишко</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Onest:wght@400;500;700&family=Unbounded:wght@500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<p class="demo" id="demo" data-t="demo" hidden></p>
+
+<header class="top">
+  <a class="top__name" href="https://shyshko.expert/">Artem Shyshko</a>
+  <nav class="top__nav" aria-label="Розділи">
+    <a href="#program" data-t="navProgram"></a>
+    <a href="#calc" data-t="navCalc"></a>
+    <a href="#stay" data-t="navStay"></a>
+    <a href="#contact" data-t="navContact"></a>
+  </nav>
+  <div class="lang" role="group" aria-label="Мова / Language">
+    <button type="button" data-lang="uk">UA</button>
+    <button type="button" data-lang="en">EN</button>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="wrap hero__inner">
+    <p class="hero__dates" id="heroDates"></p>
+    <h1 data-t="heroTitle"></h1>
+    <p class="hero__text" data-t="heroText"></p>
+    <a class="btn btn--sun" href="#calc" data-t="heroCta"></a>
+  </div>
+  <svg class="hero__sea" viewBox="0 0 1440 220" preserveAspectRatio="none" aria-hidden="true">
+    <path class="sea sea--far"  d="M0 120 C180 60 300 60 480 110 S780 170 960 110 S1260 50 1440 100 V220 H0Z"/>
+    <path class="sea sea--mid"  d="M0 150 C200 100 340 110 520 150 S820 200 1000 150 S1280 100 1440 140 V220 H0Z"/>
+    <path class="sea sea--near" d="M0 185 C220 150 380 160 560 185 S860 215 1040 185 S1300 160 1440 180 V220 H0Z"/>
+  </svg>
+</section>
+
+<main>
+  <section class="wrap block" id="program">
+    <h2 data-t="programTitle"></h2>
+    <ol class="days" id="days"></ol>
+  </section>
+
+  <section class="calc" id="calc">
+    <div class="wrap">
+      <h2 data-t="calcTitle"></h2>
+      <p class="lead" data-t="calcText"></p>
+
+      <div class="calc__grid">
+        <form class="calc__form" id="form" onsubmit="return false">
+          <fieldset>
+            <legend data-t="who"></legend>
+            <div class="people">
+              <div class="stepper">
+                <label for="adults" data-t="adults"></label>
+                <div class="stepper__ctl">
+                  <button type="button" data-step="-1" data-for="adults" aria-label="−">−</button>
+                  <input id="adults" type="number" inputmode="numeric" min="1" max="20" value="2">
+                  <button type="button" data-step="1" data-for="adults" aria-label="+">+</button>
+                </div>
+              </div>
+              <div class="stepper">
+                <label for="kids" data-t="kids"></label>
+                <div class="stepper__ctl">
+                  <button type="button" data-step="-1" data-for="kids" aria-label="−">−</button>
+                  <input id="kids" type="number" inputmode="numeric" min="0" max="20" value="2">
+                  <button type="button" data-step="1" data-for="kids" aria-label="+">+</button>
+                </div>
+              </div>
+              <div class="stepper">
+                <label for="toddlers" data-t="toddlers"></label>
+                <div class="stepper__ctl">
+                  <button type="button" data-step="-1" data-for="toddlers" aria-label="−">−</button>
+                  <input id="toddlers" type="number" inputmode="numeric" min="0" max="20" value="0">
+                  <button type="button" data-step="1" data-for="toddlers" aria-label="+">+</button>
+                </div>
+              </div>
+            </div>
+          </fieldset>
+
+          <fieldset>
+            <legend data-t="when"></legend>
+            <div class="dates">
+              <label><span data-t="arrival"></span><input id="arrival" type="date"></label>
+              <label><span data-t="departure"></span><input id="departure" type="date"></label>
+            </div>
+            <p class="error" id="dateError" data-t="badDates" role="alert" hidden></p>
+          </fieldset>
+
+          <fieldset>
+            <legend data-t="what"></legend>
+            <div class="acts" id="acts"></div>
+          </fieldset>
+        </form>
+
+        <aside class="ticket" aria-live="polite">
+          <h3 data-t="summaryTitle"></h3>
+          <p class="ticket__who" id="sumWho"></p>
+          <ul class="ticket__lines" id="sumLines"></ul>
+          <p class="ticket__empty" id="sumEmpty" data-t="empty"></p>
+          <dl class="ticket__sums">
+            <div><dt data-t="activitiesSum"></dt><dd id="sumActs"></dd></div>
+            <div><dt data-t="fee"></dt><dd id="sumFee"></dd></div>
+            <div><dt data-t="tax"></dt><dd id="sumTax"></dd></div>
+          </dl>
+          <div class="ticket__total">
+            <span data-t="total"></span>
+            <strong id="sumTotal"></strong>
+          </div>
+          <a class="btn btn--sun btn--wide" id="send" target="_blank" rel="noopener" data-t="send"></a>
+          <button class="btn btn--ghost btn--wide" id="copy" type="button" data-t="copy"></button>
+          <p class="ticket__note" data-t="notIncluded"></p>
+        </aside>
+      </div>
+    </div>
+  </section>
+
+  <section class="wrap block narrow" id="stay">
+    <h2 data-t="stayTitle"></h2>
+    <p data-t="stayText"></p>
+  </section>
+
+  <section class="wrap block narrow" id="contact">
+    <h2 data-t="contactTitle"></h2>
+    <p data-t="contactText"></p>
+    <p class="links">
+      <a id="linkWa" target="_blank" rel="noopener">WhatsApp</a>
+      <a id="linkTg" target="_blank" rel="noopener">Telegram</a>
+      <a id="linkIg" target="_blank" rel="noopener">Instagram</a>
+    </p>
+  </section>
+</main>
+
+<footer class="foot">
+  <div class="wrap">© 2027 Artem Shyshko</div>
+</footer>
+
+<script src="config.js"></script>
+<script src="app.js"></script>
+</body>
+</html>

@@ -1,0 +1,143 @@
+/*
+  Усі дані поїздки живуть у цьому файлі.
+  ЧЕРНЕТКА: поїздка, дати, ціни та тексти вигадані — замініть на справжні.
+
+  Ціни активностей: a — дорослий (13+), c — дитина 6–12, t — дитина до 6.
+  t: null означає, що дітей до 6 на цю активність не беруть.
+  day — дата активності (YYYY-MM-DD); без day активність доступна в будь-який день.
+  fee: true — на активність нараховується організаційний збір.
+  tax: true — на активність нараховується податок GST.
+*/
+window.TRIP = {
+  demo: true,
+  currency: 'CAD',
+  start: '2027-07-10',
+  end: '2027-07-17',
+  feeRate: 0.15,
+  taxRate: 0.05,
+  contact: {
+    whatsapp: '380956319951',
+    telegram: 'https://t.me/shyshko',
+    instagram: 'https://www.instagram.com/shyshka_i_companya'
+  },
+
+  days: [
+    { date: '2027-07-10',
+      title: { uk: 'Пором і заселення', en: 'Ferry and check-in' },
+      text: { uk: 'Перетинаємо протоку поромом, їдемо через острів до Тофіно і зустрічаємо перший захід сонця на пляжі.',
+              en: 'We cross the strait by ferry, drive across the island to Tofino and catch the first sunset on the beach.' } },
+    { date: '2027-07-11',
+      title: { uk: 'Кити', en: 'Whales' },
+      text: { uk: 'Тригодинний вихід в океан на критому катері. Сірі кити, морські леви, а якщо пощастить — косатки.',
+              en: 'A three-hour trip on a covered boat. Grey whales, sea lions and, with luck, orcas.' } },
+    { date: '2027-07-12',
+      title: { uk: 'Каяки в затоці', en: 'Kayaks in the inlet' },
+      text: { uk: 'Спокійна вода, острівці та орли над головою. Маршрут підходить тим, хто сідає в каяк уперше.',
+              en: 'Calm water, small islands and eagles overhead. The route suits first-time paddlers.' } },
+    { date: '2027-07-13',
+      title: { uk: 'Серф', en: 'Surf' },
+      text: { uk: 'Урок з інструктором на довгому піщаному пляжі. Гідрокостюм і дошка входять у вартість уроку.',
+              en: 'A lesson with an instructor on a long sandy beach. Wetsuit and board are included.' } },
+    { date: '2027-07-14',
+      title: { uk: 'Гарячі джерела', en: 'Hot springs' },
+      text: { uk: 'Година човном уздовж узбережжя, стежка через ліс і природні купелі просто біля океану.',
+              en: 'An hour by boat along the coast, a boardwalk through the forest and natural pools right by the ocean.' } },
+    { date: '2027-07-15',
+      title: { uk: 'Вільний день і вечеря на пляжі', en: 'Free day and beach dinner' },
+      text: { uk: 'Удень кожна родина відпочиває у своєму темпі. Увечері збираємося на спільну вечерю біля вогнища.',
+              en: 'Each family spends the day at its own pace. In the evening we gather for dinner by the fire.' } },
+    { date: '2027-07-16',
+      title: { uk: 'Дощовий ліс', en: 'Rainforest' },
+      text: { uk: 'Прогулянка серед тисячолітніх кедрів у національному парку. Легкий маршрут для будь-якого віку.',
+              en: 'A walk among thousand-year-old cedars in the national park. An easy trail for any age.' } },
+    { date: '2027-07-17',
+      title: { uk: 'Дорога додому', en: 'Heading home' },
+      text: { uk: 'Сніданок, збори та пором назад на материк.',
+              en: 'Breakfast, packing and the ferry back to the mainland.' } }
+  ],
+
+  activities: [
+    { id: 'whales',  day: '2027-07-11', a: 149, c: 99,  t: 0,    fee: true,  tax: true,
+      name: { uk: 'Спостереження за китами', en: 'Whale watching' } },
+    { id: 'kayak',   day: '2027-07-12', a: 95,  c: 65,  t: null, fee: true,  tax: true,
+      name: { uk: 'Каяки в затоці', en: 'Inlet kayaking' } },
+    { id: 'surf',    day: '2027-07-13', a: 129, c: 109, t: null, fee: true,  tax: true,
+      name: { uk: 'Урок серфінгу', en: 'Surf lesson' } },
+    { id: 'springs', day: '2027-07-14', a: 179, c: 139, t: 69,   fee: true,  tax: true,
+      name: { uk: 'Човен до гарячих джерел', en: 'Boat to the hot springs' } },
+    { id: 'dinner',  day: '2027-07-15', a: 55,  c: 30,  t: 0,    fee: true,  tax: false,
+      name: { uk: 'Вечеря на пляжі', en: 'Beach dinner' } },
+    { id: 'forest',  day: '2027-07-16', a: 0,   c: 0,   t: 0,    fee: false, tax: false,
+      name: { uk: 'Прогулянка дощовим лісом', en: 'Rainforest walk' } },
+    { id: 'bikes',   a: 120, c: 80, t: 0, fee: false, tax: true,
+      name: { uk: 'Оренда велосипедів на весь час', en: 'Bike rental for the whole stay' } },
+    { id: 'shuttle', a: 60,  c: 40, t: 0, fee: false, tax: false,
+      name: { uk: 'Трансфер від порома і назад', en: 'Shuttle from the ferry and back' } }
+  ],
+  preselected: ['whales', 'dinner'],
+
+  ui: {
+    uk: {
+      pageTitle: 'Тиждень на острові Ванкувер — Артем Шишко',
+      demo: 'Чернетка. Поїздка, дати й ціни вигадані.',
+      navProgram: 'Програма', navCalc: 'Бюджет', navStay: 'Житло', navContact: 'Контакти',
+      heroTitle: 'Тиждень на острові Ванкувер',
+      heroText: 'Кити, каяки, серф і вечори біля океану. Приїжджайте на всі дні або лише на кілька.',
+      heroCta: 'Порахувати бюджет',
+      programTitle: 'Що робимо щодня',
+      calcTitle: 'Порахуйте свій бюджет',
+      calcText: 'Вкажіть, хто їде і на які дні, та позначте активності. Суми в канадських доларах.',
+      who: 'Хто їде', adults: 'Дорослі (13+)', kids: 'Діти 6–12', toddlers: 'Діти до 6',
+      when: 'Коли', arrival: 'Приїзд', departure: 'Виїзд',
+      what: 'Активності',
+      anyDay: 'будь-який день',
+      outOfDates: 'поза вашими датами',
+      perAdult: 'дорослий', perKid: 'дитина', perToddler: 'до 6',
+      free: 'безкоштовно', notAllowed: 'не беруть',
+      summaryTitle: 'Ваш розрахунок',
+      nights: 'Ночей', activitiesSum: 'Активності',
+      fee: 'Організаційний збір 15%', tax: 'Податок GST 5%', total: 'Разом',
+      empty: 'Позначте активності, і тут з’явиться сума.',
+      badDates: 'Дата виїзду має бути пізніше за дату приїзду.',
+      notIncluded: 'Житло, харчування й дорога в суму не входять. Розрахунок орієнтовний.',
+      send: 'Надіслати розрахунок у WhatsApp', copy: 'Скопіювати розрахунок', copied: 'Скопійовано',
+      stayTitle: 'Де живемо',
+      stayText: 'Котеджі за п’ять хвилин пішки від пляжу, кожен із кухнею та терасою. Кожна родина бронює житло сама — надішлемо посилання й допоможемо обрати.',
+      contactTitle: 'Залишилися питання',
+      contactText: 'Напишіть Артему — він розповість про програму й допоможе з бронюванням.',
+      msgHello: 'Вітаю! Мене цікавить тиждень на острові Ванкувер.',
+      msgPeople: 'Їде', msgDates: 'Дати'
+    },
+    en: {
+      pageTitle: 'A week on Vancouver Island — Artem Shyshko',
+      demo: 'Draft. The trip, dates and prices are made up.',
+      navProgram: 'Program', navCalc: 'Budget', navStay: 'Stay', navContact: 'Contact',
+      heroTitle: 'A week on Vancouver Island',
+      heroText: 'Whales, kayaks, surf and evenings by the ocean. Join for the whole week or just a few days.',
+      heroCta: 'Estimate your budget',
+      programTitle: 'What we do each day',
+      calcTitle: 'Estimate your budget',
+      calcText: 'Tell us who is coming and when, then pick activities. Amounts are in Canadian dollars.',
+      who: 'Who is coming', adults: 'Adults (13+)', kids: 'Children 6–12', toddlers: 'Children under 6',
+      when: 'When', arrival: 'Arrival', departure: 'Departure',
+      what: 'Activities',
+      anyDay: 'any day',
+      outOfDates: 'outside your dates',
+      perAdult: 'adult', perKid: 'child', perToddler: 'under 6',
+      free: 'free', notAllowed: 'not admitted',
+      summaryTitle: 'Your estimate',
+      nights: 'Nights', activitiesSum: 'Activities',
+      fee: 'Organization fee 15%', tax: 'GST 5%', total: 'Total',
+      empty: 'Pick activities and the total will appear here.',
+      badDates: 'Departure must be later than arrival.',
+      notIncluded: 'Lodging, meals and travel are not included. This is an estimate.',
+      send: 'Send estimate on WhatsApp', copy: 'Copy estimate', copied: 'Copied',
+      stayTitle: 'Where we stay',
+      stayText: 'Cottages a five-minute walk from the beach, each with a kitchen and a deck. Every family books its own lodging — we will send links and help you choose.',
+      contactTitle: 'Still have questions',
+      contactText: 'Message Artem — he will walk you through the program and help with booking.',
+      msgHello: 'Hello! I am interested in the week on Vancouver Island.',
+      msgPeople: 'Travellers', msgDates: 'Dates'
+    }
+  }
+};
