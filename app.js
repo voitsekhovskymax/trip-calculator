@@ -47,6 +47,7 @@
     document.querySelectorAll('[data-lang]').forEach(function (b) { b.setAttribute('aria-pressed', String(b.dataset.lang === lang)); });
     $('demo').hidden = !C.demo;
     $('heroDates').textContent = fmtRange(C.start, C.end);
+    if ($('heroImg')) $('heroImg').alt = t('heroAlt');
     $('days').innerHTML = C.days.map(function (d) {
       return '<li><div class="days__date">' + esc(fmtDate(d.date)) + '</div><div><h3>' + esc(L(d.title)) + '</h3><p>' + esc(L(d.text)) + '</p></div></li>';
     }).join('');
@@ -89,10 +90,15 @@
     if (c) who.push(c + ' × ' + t('kids'));
     if (k) who.push(k + ' × ' + t('toddlers'));
     var whoText = who.join(', ');
-    $('sumWho').textContent = whoText + (okDates ? '. ' + t('nights') + ': ' + nights : '');
-    $('sumLines').innerHTML = lines.map(function (l) {
+    var whoLine = whoText + (okDates ? ', ' + t('nights') + ': ' + nights : '');
+    var linesHtml = lines.map(function (l) {
       return '<li><span>' + esc(l.name) + '</span><span>' + (l.amount ? money(l.amount) : esc(t('free'))) + '</span></li>';
     }).join('');
+    $('sumWho').textContent = whoLine;
+    $('sumLines').innerHTML = linesHtml;
+    $('prevWho').textContent = whoLine;
+    $('prevLines').innerHTML = linesHtml;
+    $('prevTotal').textContent = money(total);
     $('sumEmpty').hidden = lines.length > 0;
     $('sumActs').textContent = money(sum);
     $('sumFee').textContent = money(fee);
@@ -144,6 +150,17 @@
     if (navigator.clipboard && navigator.clipboard.writeText) {
       navigator.clipboard.writeText(lastSummary).then(done, function () {});
     }
+  });
+
+  $('menuBtn').addEventListener('click', function () {
+    var open = document.querySelector('.top').classList.toggle('is-open');
+    $('menuBtn').setAttribute('aria-expanded', String(open));
+  });
+  document.querySelectorAll('.top__nav a').forEach(function (a) {
+    a.addEventListener('click', function () {
+      document.querySelector('.top').classList.remove('is-open');
+      $('menuBtn').setAttribute('aria-expanded', 'false');
+    });
   });
 
   // Початковий стан

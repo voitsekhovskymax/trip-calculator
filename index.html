@@ -6,7 +6,7 @@
 <title>Тиждень на острові Ванкувер — Артем Шишко</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Onest:wght@400;500;700&family=Unbounded:wght@500;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Onest:wght@400;500;600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="styles.css">
 </head>
 <body>
@@ -21,6 +21,7 @@
     <a href="#stay" data-t="navStay"></a>
     <a href="#contact" data-t="navContact"></a>
   </nav>
+  <button class="menu" id="menuBtn" type="button" aria-expanded="false" data-t="menu"></button>
   <div class="lang" role="group" aria-label="Мова / Language">
     <button type="button" data-lang="uk">UA</button>
     <button type="button" data-lang="en">EN</button>
@@ -28,21 +29,31 @@
 </header>
 
 <section class="hero">
+  <img class="hero__img" id="heroImg" src="assets/hero.jpg" width="2000" height="1333" fetchpriority="high" alt="" onerror="this.remove()">
   <div class="wrap hero__inner">
-    <p class="hero__dates" id="heroDates"></p>
-    <h1 data-t="heroTitle"></h1>
-    <p class="hero__text" data-t="heroText"></p>
-    <a class="btn btn--sun" href="#calc" data-t="heroCta"></a>
+    <div class="hero__copy">
+      <p class="hero__dates" id="heroDates"></p>
+      <h1 data-t="heroTitle"></h1>
+      <p class="hero__text" data-t="heroText"></p>
+      <div class="hero__actions">
+        <a class="btn btn--ink" href="#calc" data-t="heroCta"></a>
+        <a class="textlink" href="#program" data-t="heroSecondary"></a>
+      </div>
+    </div>
+    <a class="ticket ticket--preview" href="#calc">
+      <p class="ticket__title" data-t="previewTitle"></p>
+      <p class="ticket__who" id="prevWho"></p>
+      <ul class="ticket__lines" id="prevLines"></ul>
+      <div class="ticket__total">
+        <span data-t="total"></span>
+        <strong id="prevTotal"></strong>
+      </div>
+    </a>
   </div>
-  <svg class="hero__sea" viewBox="0 0 1440 220" preserveAspectRatio="none" aria-hidden="true">
-    <path class="sea sea--far"  d="M0 120 C180 60 300 60 480 110 S780 170 960 110 S1260 50 1440 100 V220 H0Z"/>
-    <path class="sea sea--mid"  d="M0 150 C200 100 340 110 520 150 S820 200 1000 150 S1280 100 1440 140 V220 H0Z"/>
-    <path class="sea sea--near" d="M0 185 C220 150 380 160 560 185 S860 215 1040 185 S1300 160 1440 180 V220 H0Z"/>
-  </svg>
 </section>
 
 <main>
-  <section class="wrap block" id="program">
+  <section class="wrap block block--first" id="program">
     <h2 data-t="programTitle"></h2>
     <ol class="days" id="days"></ol>
   </section>
@@ -99,8 +110,8 @@
           </fieldset>
         </form>
 
-        <aside class="ticket" aria-live="polite">
-          <h3 data-t="summaryTitle"></h3>
+        <aside class="ticket ticket--main" aria-live="polite">
+          <h3 class="ticket__title" data-t="summaryTitle"></h3>
           <p class="ticket__who" id="sumWho"></p>
           <ul class="ticket__lines" id="sumLines"></ul>
           <p class="ticket__empty" id="sumEmpty" data-t="empty"></p>
@@ -113,8 +124,8 @@
             <span data-t="total"></span>
             <strong id="sumTotal"></strong>
           </div>
-          <a class="btn btn--sun btn--wide" id="send" target="_blank" rel="noopener" data-t="send"></a>
-          <button class="btn btn--ghost btn--wide" id="copy" type="button" data-t="copy"></button>
+          <a class="btn btn--accent btn--wide" id="send" target="_blank" rel="noopener" data-t="send"></a>
+          <button class="btn btn--onDark btn--wide" id="copy" type="button" data-t="copy"></button>
           <p class="ticket__note" data-t="notIncluded"></p>
         </aside>
       </div>
@@ -130,9 +141,9 @@
     <h2 data-t="contactTitle"></h2>
     <p data-t="contactText"></p>
     <p class="links">
-      <a id="linkWa" target="_blank" rel="noopener">WhatsApp</a>
-      <a id="linkTg" target="_blank" rel="noopener">Telegram</a>
-      <a id="linkIg" target="_blank" rel="noopener">Instagram</a>
+      <a class="btn btn--quiet" id="linkWa" target="_blank" rel="noopener">WhatsApp</a>
+      <a class="btn btn--quiet" id="linkTg" target="_blank" rel="noopener">Telegram</a>
+      <a class="btn btn--quiet" id="linkIg" target="_blank" rel="noopener">Instagram</a>
     </p>
   </section>
 </main>
